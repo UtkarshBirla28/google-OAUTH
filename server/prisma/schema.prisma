@@ -1,0 +1,21 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model GoogleUser {
+  id           Int      @id @default(autoincrement())
+  googleId     String   @unique
+  email        String   @unique
+  name         String
+  accessToken  String
+  refreshToken String
+  tokenType    String
+  scope        String
+  expiryDate   DateTime?
+  createdAt    DateTime @default(now())
+}
